@@ -1,0 +1,91 @@
+scp_program -> proc_count_the_other_way
+(* -> rrel_params: ..proc_count_the_other_way_params
+    (*
+        -> rrel_1: rrel_in: _node_of_graph;;
+        -> rrel_2: rrel_in: _power;;
+        -> rrel_3: rrel_in: _graph;;
+        -> rrel_4: rrel_in: _vertex_counter;;
+    *);;
+    -> rrel_operators: ..proc_count_the_other_way_operators
+    (*
+        -> rrel_init: ..an_op_1 (*
+
+            <- contAssign ;;
+
+            -> rrel_1 : rrel_assign : rrel_scp_var : rrel_link : _an_power ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_const : rrel_link : [0] ;;
+
+            => nrel_goto : ..an_op_2 ;;
+        *);;
+        -> ..an_op_2 (*
+            <- searchSetStr5;;
+
+            -> rrel_1 : rrel_assign : rrel_scp_var : rrel_node: _fuck_node ;;
+            -> rrel_2 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc_help ;;
+            -> rrel_3 : rrel_fixed : rrel_scp_var : rrel_node : _node_of_graph ;;
+            -> rrel_4 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc_help_2 ;;
+            -> rrel_5 : rrel_fixed : rrel_scp_var : rrel_node : _graph ;;
+
+            -> rrel_set_1: rrel_assign: rrel_scp_var: _set_of_input;;
+
+            => nrel_then: ..fuck_work;;
+            => nrel_else: ..sum_power_of_vertex;;
+        *);;
+
+        -> ..fuck_work (*
+            <- searchElStr3;;
+            -> rrel_1: rrel_fixed: rrel_scp_var: _set_of_input;;
+            -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _fuck_arc;;
+            -> rrel_3: rrel_assign: rrel_scp_var: some_node_2;;
+            => nrel_then: ..an_op_3;;
+            => nrel_else: ..sum_power_of_vertex;;
+        *);;
+        -> ..an_op_3 (*
+            <- eraseEl ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_pos_const_perm : rrel_erase : _fuck_arc ;;
+
+            => nrel_goto : ..an_op_4 ;;
+        *);;
+        -> ..an_op_4 (*
+            <- contAdd ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_link : _an_power ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_var : rrel_link : _an_power ;;
+            -> rrel_3 : rrel_fixed : rrel_scp_const : rrel_link : [1] ;;
+
+            => nrel_goto : ..fuck_work ;;
+        *);;
+        -> ..sum_power_of_vertex (*
+            <- contAdd ;;
+
+            -> rrel_1 : rrel_assign : rrel_scp_var : rrel_link : _sum_power ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_var : rrel_link : _an_power ;;
+            -> rrel_3 : rrel_fixed : rrel_scp_var : rrel_link : _power ;;
+
+            => nrel_goto : ..p_oper_compare ;;
+        *);;
+        -> ..p_oper_compare (*
+            <- call;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_const: proc_do_something;;
+            -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                -> rrel_1: rrel_fixed: rrel_scp_var: _vertex_counter;;
+                -> rrel_2: rrel_fixed: rrel_scp_var: _sum_power;;
+            *);;
+            -> rrel_3: rrel_assign: rrel_scp_var: _rabotay;;
+
+            => nrel_goto : ..an_oper_wait ;;
+        *);;
+        -> ..an_oper_wait (*
+            <- waitReturn;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _rabotay;;
+
+            => nrel_goto: ..an_oper_return;;
+        *);;
+        -> ..an_oper_return (*
+            <- return;;
+        *);;
+    *);;
+*);;

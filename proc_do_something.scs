@@ -1,0 +1,54 @@
+scp_program -> proc_do_something
+(* -> rrel_params: ..proc_do_something_params
+    (*
+        -> rrel_1: rrel_in: _vertex_counter;;
+        -> rrel_2: rrel_in: _power;;
+    *);;
+    -> rrel_operators: ..proc_do_something_operators
+    (*
+        -> rrel_init: ..do_oper1 (*
+            <- contAssign ;;
+
+            -> rrel_1 : rrel_assign : rrel_scp_var : rrel_link : _half_of_vertexes ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_const : rrel_link : [0] ;;
+
+            => nrel_goto : ..do_oper2 ;;
+        *);;
+        -> ..do_oper2 (*
+
+            <- contDiv;;
+
+            -> rrel_1: rrel_assign: rrel_scp_var: _half_of_vertexes;;
+            -> rrel_2: rrel_fixed: rrel_scp_var: _vertex_counter;;
+            -> rrel_3: rrel_fixed: rrel_scp_const: [2];;
+            => nrel_goto: ..do_oper3;;
+        *);;
+        -> ..do_oper3 (* // если мнеьше то НЕ гамильтонов
+            <- ifGr;;
+
+            -> rrel_1: rrel_scp_var: _power;;
+            -> rrel_2: rrel_scp_var: _half_of_vertexes;;
+            => nrel_then: ..do_oper_return;;
+            => nrel_else: ..compare_equality;;
+        *);;
+        -> ..compare_equality (*
+            <- ifEq;;
+
+            -> rrel_1: rrel_scp_var: _power;;
+            -> rrel_2: rrel_scp_var: _half_of_vertexes;;
+
+            => nrel_then: ..do_oper_return;;
+            => nrel_else: ..print_not_hamilton;;
+        *);;
+        -> ..print_not_hamilton (*
+            <- printNl ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_const : [GRAPH IS NOT HAMILTONIAN ] ;;
+
+            => nrel_goto : ..do_oper_return;;
+        *);;
+        -> ..do_oper_return (*
+            <- return;;
+        *);;
+    *);;
+*);;

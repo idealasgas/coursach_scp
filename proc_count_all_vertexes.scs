@@ -1,0 +1,111 @@
+scp_program -> proc_count_all_vertexes
+(* -> rrel_params: ..proc_count_all_vertexes_params
+    (*
+        -> rrel_1: rrel_in: _graph;;
+    *);;
+    -> rrel_operators: ..proc_count_all_vertexes_operators
+    (*
+        -> rrel_init: ..ver_oper1 (*
+            <- searchSetStr5;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_node: _graph ;;
+            -> rrel_2 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc1 ;;
+            -> rrel_3 : rrel_assign : rrel_scp_var : rrel_node : _node1 ;;
+            -> rrel_4 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc2 ;;
+            -> rrel_5 : rrel_fixed : rrel_scp_const : rrel_role_relation : rrel_vertex ;;
+
+            -> rrel_set_3 : rrel_assign : rrel_scp_var : rrel_node : _set_of_vertexes ;; // сюда заносим все вершины
+
+            => nrel_then : ..ver_oper2 ;;
+            => nrel_else : ..ver_oper_return ;;
+        *);;
+        -> ..ver_oper2 (*
+            <- contAssign ;;
+
+            -> rrel_1 : rrel_assign : rrel_scp_var : rrel_link : _vertex_counter ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_const : rrel_link : [0] ;;
+
+            => nrel_goto : ..ver_oper3 ;;
+        *);;
+        -> ..ver_oper3 (*
+            <- searchElStr3 ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_node : _set_of_vertexes ;;
+            -> rrel_2 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc3 ;;
+            -> rrel_3 : rrel_assign : rrel_scp_var : rrel_node : _node2 ;;
+
+            => nrel_then : ..ver_oper4 ;;
+            => nrel_else : ..print_a_word ;;
+        *);;
+        -> ..ver_oper4 (*
+            <- eraseEl ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_pos_const_perm : rrel_erase : _arc3 ;;
+
+            => nrel_goto : ..ver_oper5 ;;
+        *);;
+        -> ..ver_oper5 (*
+            <- contAdd ;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_link : _vertex_counter ;;
+            -> rrel_2 : rrel_fixed : rrel_scp_var : rrel_link : _vertex_counter ;;
+            -> rrel_3 : rrel_fixed : rrel_scp_const : rrel_link : [1] ;;
+
+            => nrel_goto : ..ver_oper3 ;;
+        *);;
+        -> ..print_amount_of_vertexes (*
+            <- printNl;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _vertex_counter;;
+
+            => nrel_goto : ..create_set_of_vertexes ;;
+
+        *);;
+        -> ..print_a_word (*
+            <- print;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_const: [---------------Vertexes: ];;
+
+            => nrel_goto : ..print_amount_of_vertexes ;;
+
+        *);;
+        -> ..create_set_of_vertexes (*
+            <- searchSetStr5;;
+
+            -> rrel_1 : rrel_fixed : rrel_scp_var : rrel_node: _graph ;;
+            -> rrel_2 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc42 ;;
+            -> rrel_3 : rrel_assign : rrel_scp_var : rrel_node : _node1 ;;
+            -> rrel_4 : rrel_assign : rrel_scp_var : rrel_pos_const_perm : _arc23 ;;
+            -> rrel_5 : rrel_fixed : rrel_scp_const : rrel_role_relation : rrel_vertex ;;
+
+            -> rrel_set_3 : rrel_assign : rrel_scp_var : rrel_node : _set_of_vertexes_again ;; // сюда заносим все вершины
+
+            => nrel_then : ..ver_oper_count_power_now ;;
+            => nrel_else : ..ver_oper_return ;;
+        *);;
+        -> ..ver_oper_count_power_now (*
+            <- call;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_const: proc_count_power_of_vertex;;
+            -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                -> rrel_1: rrel_fixed: rrel_scp_var: _set_of_vertexes_again;;
+                -> rrel_2: rrel_fixed: rrel_scp_var: _vertex_counter;;
+                -> rrel_3: rrel_fixed: rrel_scp_var: _graph;;
+            *);;
+            -> rrel_3: rrel_assign: rrel_scp_var: _descr2;;
+
+            => nrel_goto : ..ver_wait_for ;;
+
+        *);;
+        -> ..ver_wait_for (*
+            <- waitReturn;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _descr2;;
+
+            => nrel_goto: ..ver_oper_return;;
+        *);;
+        -> ..ver_oper_return (*
+            <- return;;
+        *);;
+    *);;
+*);;

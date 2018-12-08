@@ -1,0 +1,20 @@
+undirected_graph -> graph2(*
+-> rrel_vertex: v2_1;;
+-> rrel_vertex: v2_2;;
+-> rrel_vertex: v2_3;;
+-> rrel_vertex: v2_4;;
+-> rrel_arc: (v2_1 -> v2_2);;
+-> rrel_arc: (v2_2 -> v2_1);;
+
+-> rrel_arc: (v2_1 -> v2_3);;
+-> rrel_arc: (v2_3 -> v2_1);;
+
+-> rrel_arc: (v2_1 -> v2_4);;
+-> rrel_arc: (v2_4 -> v2_1);;
+
+-> rrel_arc: (v2_2 -> v2_3);;
+-> rrel_arc: (v2_3 -> v2_2);;
+
+-> rrel_arc: (v2_3 -> v2_4);;
+-> rrel_arc: (v2_4 -> v2_3);;
+*);;
